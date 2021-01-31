@@ -1,4 +1,4 @@
-# Finch collector lab - Views and Templates
+# Finch Collector - Views and Templates
 
 The lab for this lesson is repeating everything we just did, except you'll collect something else like Finches and call the project something like finchcollector, or whatever.
 
