@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   <script src=""></script>
   <title>Sport collector</title>
 </head>
@@ -19,13 +20,24 @@
         </ul>
         <ul class="right">
           <li><a href="/sports">Sports</a></li>
+          <li><a href="/reviews">Reviews</a></li>
+          <li><a href="/about">About</a></li>
         </ul>
       </div>
     </nav>
   </header>
+
   <main class="container">
     {% block content %}
     {% endblock %}
   </main>
+
+  <footer class="page-footer">
+    <div class="right">
+      All Rights Reserved, &copy; 2021 Sports Collector &nbsp;
+    </div>
+  </footer>
+
+
 </body>
 </html>

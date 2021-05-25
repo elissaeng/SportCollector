@@ -1,30 +1,32 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Sport
 
-class Sport:
-  def __init__(self, name, description = 'no description', is_fun = True):
-    self.name = name
-    self.description = description
-    self.is_fun = is_fun
-
-
-sports = [
-  Sport('Skiing', 'needs snow'),
-  Sport('Mountain Biking', 'needs a bike'),
-  Sport('Hiking'),
-  Sport('Mountaineering'),
-  Sport('Running', is_fun = False)
-]
 
 
 # Create your views here.
 def home(request):
-  return HttpResponse('<h1>sports!</h1>') 
+  return render(request, 'home.html')
 
-def index(request):
-  context = { 'sports': sports }
-  return render(request, 'index.html', context)
 
 def about(request):
-  context = { 'sports': sports }
-  return render(request, 'about.html', context )  
+  return render(request, 'about.html')  
+
+
+def reviews(request):
+    return render(request, 'reviews.html')
+
+
+def index(request):
+  sports = Sport.objects.all()
+  context = { 'sports': sports}
+  return render(request, 'sports/sports_index.html', context)  
+
+
+def detail(request, sport_id):
+  found_sport = Sport.objects.get(id=sport_id)
+  context = { 'sport': found_sport }
+  return render(request, 'sports/sports_detail.html', context)
+
+
+
