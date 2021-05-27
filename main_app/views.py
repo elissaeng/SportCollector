@@ -88,17 +88,26 @@ def add_athlete(request, sport_id):
   return redirect('detail', sport_id = sport_id)
 
 
+# DELETE ATHLETE
+def delete_athlete(request, sport_id, athlete_id):
+  sport=Sport.objects.get(id=sport_id)
+  found_athlete = Athlete.objects.get(id=athlete_id)
+  sport.athlete_set.remove(found_athlete)
+  return redirect('detail', sport_id = sport_id)
+
+
 
 # DELETE ATHLETE 
-def delete_athlete(request, athlete_id):
-  athlete = Athlete.objects.get(id=athlete_id)
-  athlete.delete()
-  return redirect('index')
-
-
 # def delete_athlete(request, athlete_id):
-#   found_athlete = Athlete.objects.get(id=athlete_id)
-#   found_athlete.athletes.delete(athlete_id)
+#   athlete = Athlete.objects.get(id=athlete_id)
+#   athlete.delete()
+#   return redirect('index')
+
+# def athlete_set(request, athlete_id):
+#   athlete = Athlete.objects.get(id=athlete_id)
+#   # sport.athlete_set.clear()
+#   return redirect('index')
+
 
 
 # DETAIL SPORTS

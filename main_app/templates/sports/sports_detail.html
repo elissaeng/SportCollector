@@ -26,24 +26,25 @@
           <tr>
             <td>{{athlete.name}}</td>
             <td>{{athlete.age }}</td>
+            <td><a href="{% url 'delete_athlete' sport.id athlete.id%}">Delete</a></td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   
 
-    <!-- <div class="card">
+    <div class="card-action">
+      <a href="{% url 'delete_sport' sport.id %}">Delete Sport</a>
+      <a href="{% url 'update_sport' sport.id %}">Update Sport</a>
+      
+    </div>
+
+  
+  {% endblock %}
+
+   <!-- <div class="card">
       <div class ="card-content">
         <span class="card-title"></span>
         <p>Athlete: {{ athlete.name }}</p>
       </div>
     </div> -->
-
-    <div class="card-action">
-      <a href="{% url 'delete_sport' sport.id %}">Delete Sport</a>
-      <a href="{% url 'update_sport' sport.id %}">Update Sport</a>
-      <a href="{% url 'delete_athlete' athlete.id %}">Delete Athlete</a>
-    </div>
-
-  
-  {% endblock %}
