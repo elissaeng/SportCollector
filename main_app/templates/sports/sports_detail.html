@@ -13,10 +13,27 @@
 
     <hr />
 
+    <form action="{% url 'add_athlete' sport.id %}" method="post">
+      {% csrf_token %}
+      {{ AthleteForm.as_p }}
+      <input type="submit" class="btn" value="Add Athlete">
+    </form>
+
+    <table class="striped">
+      <tbody>
+        {% for athlete in sport.athlete_set.all %}
+          <tr>
+            <td>{{athlete.name}}</td>
+            <td>{{athlete.age }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
     <div class="card">
       <div class ="card-content">
         <span class="card-title"></span>
-        <p>Athlete: {{ athelte.name}}</p>
+        <p>Athlete: {{ athlete.name }}</p>
       </div>
     </div>
 

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Sport, Athlete
-from .forms import SportForm
+from .forms import SportForm, AthleteForm
 
 
 
@@ -26,7 +26,8 @@ def index(request):
 # DETAIL SPORTS
 def detail(request, sport_id):
   found_sport = Sport.objects.get(id=sport_id)
-  context = { 'sport': found_sport }
+  athlete_form = AthleteForm()
+  context = { 'sport': found_sport, 'AthleteForm': athlete_form }
   return render(request, 'sports/sports_detail.html', context)
 
 
@@ -74,8 +75,17 @@ def update_sport(request, sport_id):
 
 
 # ADD AN ATHLETE
-def assoc_athlete(request, sport_id, toy_id):
+def assoc_athlete(request, sport_id, athlete_id):
   found_sport = Sport.objects.get(id=sport_id)
   found_sport.athletes.add(athlete_id)
 
-  return redirect('detail', sport_id)      
+  return redirect('detail', sport_id)  
+
+def add_athlete(request, sport_id):
+  form = AthleteForm(request.POST)
+  if form.is_valid():
+    new_athlete = form.save(commit=False)
+    new_athlete.sport_id = sport_id 
+    new_athlete.save()
+  
+  return redirect('detail', sport_id = sport_id)
