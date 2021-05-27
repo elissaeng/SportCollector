@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Add New Sport</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button class="btn" type="submit">Add Sport</button>
+</form>
+
+{% endblock %}

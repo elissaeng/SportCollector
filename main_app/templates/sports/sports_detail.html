@@ -8,7 +8,21 @@
     <div class="card-content">
       <span class="card-title">{{ sport.name }}</span>
       <p>Description: {{ sport.description }}</p>
-      <p>Is Fun: {{ sport.is_fun }}</p>
+      <p>Is It Fun: {{ sport.is_fun }}</p>
+    </div>
+
+    <hr />
+
+    <div class="card">
+      <div class ="card-content">
+        <span class="card-title"></span>
+        <p>Athlete: {{ athelte.name}}</p>
+      </div>
+    </div>
+
+    <div class="card-action">
+      <a href="{% url 'delete_sport' sport.id %}">Delete</a>
+      <a href="{% url 'update_sport' sport.id %}">Update</a>
     </div>
   </div>
 
