@@ -6,8 +6,8 @@ from django.db import models
 class Sport(models.Model):
   name = models.CharField(max_length=50)
   description = models.TextField(max_length=250)
-  is_fun = models.BooleanField(default=True)
   location = models.TextField(max_length=250)
+  is_fun = models.BooleanField(default=True)
 
 
 class Athlete(models.Model):

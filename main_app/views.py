@@ -53,7 +53,6 @@ def delete_sport(request, sport_id):
   return redirect('index')
 
 
-
 # UPDATE SPORTS
 def update_sport(request, sport_id):
   sport = Sport.objects.get(id=sport_id)
@@ -72,8 +71,6 @@ def update_sport(request, sport_id):
       return redirect('detail', sport.id)
 
 
-
-
 # ADD AN ATHLETE
 def assoc_athlete(request, sport_id, athlete_id):
   found_sport = Sport.objects.get(id=sport_id)
@@ -89,3 +86,24 @@ def add_athlete(request, sport_id):
     new_athlete.save()
   
   return redirect('detail', sport_id = sport_id)
+
+
+
+# DELETE ATHLETE 
+def delete_athlete(request, athlete_id):
+  athlete = Athlete.objects.get(id=athlete_id)
+  athlete.delete()
+  return redirect('index')
+
+
+# def delete_athlete(request, athlete_id):
+#   found_athlete = Athlete.objects.get(id=athlete_id)
+#   found_athlete.athletes.delete(athlete_id)
+
+
+# DETAIL SPORTS
+# def detail(request, sport_id):
+#   found_sport = Sport.objects.get(id=sport_id)
+#   athlete_form = AthleteForm()
+#   context = { 'sport': found_sport, 'AthleteForm': athlete_form }
+#   return render(request, 'sports/sports_detail.html', context)
