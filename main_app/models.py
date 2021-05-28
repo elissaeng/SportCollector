@@ -19,7 +19,6 @@ class Sport(models.Model):
   description = models.TextField(max_length=250)
   location = models.TextField(max_length=250)
   is_fun = models.BooleanField(default=True)
-  sponsers = models.ManyToManyField(Sponser, blank=True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
@@ -29,6 +28,7 @@ class Sport(models.Model):
 class Athlete(models.Model):
   name = models.CharField(max_length=100)
   age = models.IntegerField()
+  sponsers = models.ManyToManyField(Sponser, blank=True)
 
   sport = models.ForeignKey(Sport, on_delete=models.CASCADE, null=True)
 

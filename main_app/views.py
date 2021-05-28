@@ -25,12 +25,23 @@ def index(request):
   context = { 'sports': sports}
   return render(request, 'sports/sports_index.html', context)  
 
+
+
+
 # DETAIL SPORTS
 def detail(request, sport_id):
   found_sport = Sport.objects.get(id=sport_id)
   athlete_form = AthleteForm()
-  context = { 'sport': found_sport, 'AthleteForm': athlete_form }
+  context = { 'sport': found_sport, 'AthleteForm': athlete_form}
   return render(request, 'sports/sports_detail.html', context)
+
+# def detail(request, sport_id):
+#   found_sport = Sport.objects.get(id=sport_id)
+#   Athlete.objects.all()
+#   all_athletes = Athlete.objects.all()
+#   athlete_form = AthleteForm()
+#   context = { 'sport': found_sport, 'AthleteForm': athlete_form, 'all_athletes': all_athletes}
+#   return render(request, 'sports/sports_detail.html', context)
 
 
 # CREATE SPORTS
@@ -97,7 +108,14 @@ def delete_athlete(request, sport_id, athlete_id):
   sport.athlete_set.remove(found_athlete)
   return redirect('detail', sport_id = sport_id)
 
+# ATHLETE DETAIL
+def athlete_detail(request, athlete_id):
+  athlete = Athlete.objects.get(id=athlete_id)
+  
+  sponsers_athlete_doesnt_have = Sponser.objects.exclude(athlete=athlete_id)
+  context = { 'athlete': athlete, 'sponsers': sponsers_athlete_doesnt_have}
 
+  return render(request, 'sports/athlete_detail.html', context) 
 
 # ADD SPONSER
 def assoc_sponser(request, athlete_id, sponser_id):

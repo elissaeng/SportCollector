@@ -31,6 +31,7 @@
           <tr>
             <td>{{athlete.name}}</td>
             <td>{{athlete.age }}</td>
+            <td><a href="{% url 'athlete_detail' athlete.id %}">Athlete</a></td>
             <td><a href="{% url 'delete_athlete' sport.id athlete.id%}">Delete</a></td>
           </tr>
         {% endfor %}
@@ -41,6 +42,8 @@
 
   <div class="row">
     <div class="col s6">
+      
+      
       <h3>{{ athlete.name }}'s Sponsers</h3>
 
         {% if athlete.sponsers.count %}
@@ -57,6 +60,7 @@
         {% else %}  
           <h5>No Sponsers</h5>
         {% endif %}  
+        
     </div>
   </div>
 
