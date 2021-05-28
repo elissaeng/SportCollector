@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Sport, Athlete
+from .models import Sport, Athlete, Sponser
 from .forms import SportForm, AthleteForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -96,6 +96,19 @@ def delete_athlete(request, sport_id, athlete_id):
   found_athlete = Athlete.objects.get(id=athlete_id)
   sport.athlete_set.remove(found_athlete)
   return redirect('detail', sport_id = sport_id)
+
+
+
+# ADD SPONSER
+def assoc_sponser(request, athlete_id, sponser_id):
+  found_athlete = Athlete.objects.get(id=athlete_id)
+  found_athlete.sponsers.add(sponser_id)
+  return redirect('detail', athlete_id = athlete_id)
+
+
+def remove_sponser(request, athlete_id, sponser_id):
+  Athlete.objects.get(id=athlete_id).sponsers.remove(sponser_id)
+  return redirect('detail', athlete_id=athlete_id)
 
 
 
