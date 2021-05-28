@@ -26,8 +26,8 @@
           <li><a href="{% url 'create_sport' %}">Add Sport</a></li>
 
           {% if user.is_authenticated %}
-            <li><a href="{% url 'create_sport' %}">Add Sport</a></li>
-            <li><a href="{% url 'index' %}"></a>Sports</li>
+            {% comment %} <li><a href="{% url 'create_sport' %}">Add Sport</a></li> {% endcomment %}
+            {% comment %} <li><a href="{% url 'index' %}"></a>Sports</li> {% endcomment %}
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
             <li><a href="{% url 'login' %}">Log In</a></li>  

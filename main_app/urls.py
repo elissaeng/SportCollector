@@ -16,14 +16,16 @@ urlpatterns = [
   
   
   path('athlete/<int:athlete_id>/', views.athlete_detail, name='athlete_detail'),
-  path('athlete/sponsers/', views.assoc_sponser, name='assoc_sponser')
+  path('athlete/sponsers/', views.assoc_sponser, name='assoc_sponser'),
+  path('athletes/<int:athlete_id>/sponsers/<int:sponser_id>/', views.assoc_sponser, name='assoc_sponser'),
+  path('athletes/<int:athlete_id>/sponsers/<int:sponser_id>/remove', views.remove_sponser, name='remove_sponser'),
+]
+  
 
-  # path('athletes/<int:athlete_id>/sponsers/<int:sponser_id>/', views.assoc_sponser, name='assoc_sponser'),
+# path('athletes/<int:athlete_id>/sponsers/<int:sponser_id>/', views.assoc_sponser, name='assoc_sponser'),
 #   path('athlete/sponsers/', views_assoc_sponser, name='assoc_sponser')
 #   path('sports/<int:athlete_id>/sponsers/', views.assoc_sponser, name='assoc_sponser'),
 #   path('athletes/<int:athlete_id>/sponsers/<int:sponser_id>/remove', views.remove_sponser, name='remove_sponser'),
-]
-
 
 # path('sports/<int:sport_id>/delete_athlete/', views.delete_athlete, name='delete_athlete'),
   # path('sports/<int:sport_id>/athlete/<int:athlete_id>/', views.delete_athlete, name='delete_athlete'),

@@ -111,22 +111,24 @@ def delete_athlete(request, sport_id, athlete_id):
 # ATHLETE DETAIL
 def athlete_detail(request, athlete_id):
   athlete = Athlete.objects.get(id=athlete_id)
+
   
   sponsers_athlete_doesnt_have = Sponser.objects.exclude(athlete=athlete_id)
   context = { 'athlete': athlete, 'sponsers': sponsers_athlete_doesnt_have}
 
   return render(request, 'sports/athlete_detail.html', context) 
 
-# ADD SPONSER
+
+# ADD A SPONSER TO AN ATHLETE
 def assoc_sponser(request, athlete_id, sponser_id):
   found_athlete = Athlete.objects.get(id=athlete_id)
   found_athlete.sponsers.add(sponser_id)
-  return redirect('detail', athlete_id = athlete_id)
+  return redirect('athlete_detail', athlete_id = athlete_id)
 
 
 def remove_sponser(request, athlete_id, sponser_id):
   Athlete.objects.get(id=athlete_id).sponsers.remove(sponser_id)
-  return redirect('detail', athlete_id=athlete_id)
+  return redirect('athlete_detail', athlete_id=athlete_id)
 
 
 

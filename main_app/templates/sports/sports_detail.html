@@ -31,8 +31,8 @@
           <tr>
             <td>{{athlete.name}}</td>
             <td>{{athlete.age }}</td>
-            <td><a href="{% url 'athlete_detail' athlete.id %}">Athlete</a></td>
-            <td><a href="{% url 'delete_athlete' sport.id athlete.id%}">Delete</a></td>
+            <td><a href="{% url 'athlete_detail' athlete.id %}">Athlete Details</a></td>
+            <td><a href="{% url 'delete_athlete' sport.id athlete.id%}">Delete Athlete</a></td>
           </tr>
         {% endfor %}
       </tbody>
@@ -40,11 +40,14 @@
 
   <hr />
 
-  <div class="row">
+
+<!-- <div class="row">
     <div class="col s6">
       
       
       <h3>{{ athlete.name }}'s Sponsers</h3>
+
+      {% if athlete.sponsers.count > 0 %}
 
         {% if athlete.sponsers.count %}
 
@@ -59,10 +62,14 @@
         
         {% else %}  
           <h5>No Sponsers</h5>
-        {% endif %}  
+        {% endif %}   -->
         
-    </div>
+    <!-- </div>
   </div>
+
+  <div class="col s6">
+
+    <h3>Available Sponsers</h3>
 
   {% for sponser in sponsers %}
   <div class="card">
@@ -80,7 +87,7 @@
 
   </div>
 {% endfor %}
-
+{% endif %} -->
   
 {% endblock %}
 
