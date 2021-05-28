@@ -2,13 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User 
 # from django.db.models.fields import CharField
 
-
+# class Sponser(model.Model):
 # Create your models here.
 class Sport(models.Model):
   name = models.CharField(max_length=50)
   description = models.TextField(max_length=250)
   location = models.TextField(max_length=250)
   is_fun = models.BooleanField(default=True)
+  # sponsers = models.ManyToManyField(Sponser, blank=True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

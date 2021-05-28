@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Sport, Athlete
 from .forms import SportForm, AthleteForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 
 
@@ -95,6 +97,28 @@ def delete_athlete(request, sport_id, athlete_id):
   sport.athlete_set.remove(found_athlete)
   return redirect('detail', sport_id = sport_id)
 
+
+
+# SIGNUP FUNCTION
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'  
+
+  form = UserCreationForm()      
+
+  context = {
+    'form': form,
+    'error_message': error_message
+  }
+
+  return render(request, 'registration/signup.html', context)
 
 
 # DELETE ATHLETE 
