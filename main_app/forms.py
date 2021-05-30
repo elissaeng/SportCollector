@@ -12,7 +12,7 @@ class AthleteForm(forms.ModelForm):
     model = Athlete
     fields = ('name', 'age', 'hometown')
 
-class Channel(forms.ModelForm):
+class ChannelForm(forms.ModelForm):
   class Meta:
     model = Channel
     fields = ('date', 'channel')    

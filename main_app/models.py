@@ -31,7 +31,7 @@ class Sport(models.Model):
 
 
 # SPORT CHANNEL
- class Channel(models.Model):
+class Channel(models.Model):
   date = models.DateField()
   channel = models.CharField(
     max_length=1,
