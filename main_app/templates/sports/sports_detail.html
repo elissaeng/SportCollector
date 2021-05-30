@@ -28,7 +28,7 @@
           <tr>
             <td>{{channel.date}}</td>
             <td>{{channel.get_channel_display }}</td>
-            <td><a class="btn red" href="{% url 'delete_channel' cat.id channel.id %}">Delete</a></td>
+            <td><a class="btn red" href="{% url 'delete_channel' sport.id channel.id %}">Delete Channel</a></td>
           </tr>
         {% endfor %}
       </tbody>

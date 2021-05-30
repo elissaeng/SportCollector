@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Sport, Athlete, Sponser
-from .forms import SportForm, AthleteForm
+from .models import Sport, Athlete, Sponser, Channel
+from .forms import SportForm, AthleteForm, ChannelForm 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
@@ -34,6 +34,34 @@ def detail(request, sport_id):
   athlete_form = AthleteForm()
   context = { 'sport': found_sport, 'AthleteForm': athlete_form}
   return render(request, 'sports/sports_detail.html', context)
+
+
+  channel_form = ChannelForm()
+
+  context = {
+    'sport': found_sport,
+    'channel_form': channel_form,
+  }
+
+  return render(request, 'sports/sports_detail.html', context)
+
+
+# CHANNEL TO WATCH SPORTS
+def channel_sport(request, sport_id):
+  form = ChannelForm(request.POST)
+  if form.is_valid():
+    new_channel = form.save(commit=False)
+    new_channel.sport_id = sport_id
+    new_channel.save()
+    return redirect('detail', sport_id)
+
+
+def delete_channel(request, sport_id, channel_id):
+  sport = Sport.objects.get(id=sport_id)
+  channel = Channel.objects.get(id=channel_id)
+  channel = sport.channel_set.remove(channel)
+  print(channels)
+  return redirect('detail', sport_id)
 
 # def detail(request, sport_id):
 #   found_sport = Sport.objects.get(id=sport_id)

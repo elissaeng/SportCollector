@@ -49,7 +49,7 @@ class Sport(models.Model):
 class Athlete(models.Model):
   name = models.CharField(max_length=100)
   age = models.IntegerField()
-  # hometown = models.TextField(max_length=100)
+  hometown = models.TextField(max_length=100)
   sponsers = models.ManyToManyField(Sponser, blank=True)
 
   sport = models.ForeignKey(Sport, on_delete=models.CASCADE, null=True)
