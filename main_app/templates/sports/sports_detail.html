@@ -19,22 +19,25 @@
 
     <hr />
 
+
+ <form action="{% url 'add_channel' sport.id %}" method="post">
+      {% csrf_token %}
+      {{ ChannelForm.as_p }}
+      <input type="submit" class="btn" value="Add Channel">
+    </form>
+
     <table class="striped">
-      <thead>
-        <tr><th>Date</th><th>Channel</th></tr>
-      </thead>
       <tbody>
         {% for channel in sport.channel_set.all %}
           <tr>
-            <td>{{channel.date}}</td>
-            <td>{{channel.get_channel_display }}</td>
-            <td><a class="btn red" href="{% url 'delete_channel' sport.id channel.id %}">Delete Channel</a></td>
+            <td>{{channel.name}}</td>
+            <td>{{channel.date }}</td>
+            <td>{{ channel.time }}</td>
+            <!-- <td><a href="{% url 'delete_channel' sport.id channel.id%}">Delete Channel</a></td> -->
           </tr>
         {% endfor %}
       </tbody>
     </table>
-  </div>
-</div>
 
 
     <form action="{% url 'add_athlete' sport.id %}" method="post">
@@ -59,23 +62,6 @@
 
   <hr />
 
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const channels = document.querySelectorAll('select');
-      const dates = document.querySelectorAll('#id_date');
-
-      const options = {
-        format: 'yyyy-mm-dd',
-        defaultDate: new Date(),
-        setDefaultDate: true,
-        autoClose: true,
-      }
-
-      const channelInstances = M.FormSelect.init(channels);
-      const dateInstances = M.Datepicker.init(dates, options);
-    });
-  </script>
   
 {% endblock %}
 

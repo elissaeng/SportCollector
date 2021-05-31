@@ -32,44 +32,13 @@ def index(request):
 def detail(request, sport_id):
   found_sport = Sport.objects.get(id=sport_id)
   athlete_form = AthleteForm()
-  context = { 'sport': found_sport, 'AthleteForm': athlete_form}
-  return render(request, 'sports/sports_detail.html', context)
-
-
   channel_form = ChannelForm()
-
-  context = {
-    'sport': found_sport,
-    'channel_form': channel_form,
-  }
-
+  context = { 'sport': found_sport, 'AthleteForm': athlete_form, 'ChannelForm': channel_form}
+  
   return render(request, 'sports/sports_detail.html', context)
 
 
-# CHANNEL TO WATCH SPORTS
-def channel_sport(request, sport_id):
-  form = ChannelForm(request.POST)
-  if form.is_valid():
-    new_channel = form.save(commit=False)
-    new_channel.sport_id = sport_id
-    new_channel.save()
-    return redirect('detail', sport_id)
 
-
-def delete_channel(request, sport_id, channel_id):
-  sport = Sport.objects.get(id=sport_id)
-  channel = Channel.objects.get(id=channel_id)
-  channel = sport.channel_set.remove(channel)
-  print(channels)
-  return redirect('detail', sport_id)
-
-# def detail(request, sport_id):
-#   found_sport = Sport.objects.get(id=sport_id)
-#   Athlete.objects.all()
-#   all_athletes = Athlete.objects.all()
-#   athlete_form = AthleteForm()
-#   context = { 'sport': found_sport, 'AthleteForm': athlete_form, 'all_athletes': all_athletes}
-#   return render(request, 'sports/sports_detail.html', context)
 
 
 # CREATE SPORTS
@@ -127,6 +96,49 @@ def add_athlete(request, sport_id):
     new_athlete.save()
   
   return redirect('detail', sport_id = sport_id)
+
+
+# ADD A CHANNEL 
+def assoc_channel(request, sport_id, channel_id):
+  found_sport = Sport.objects.get(id=sport_id)
+  found_sport.channels.add(channel_id)
+
+  return redirect('detail', sport_id)  
+
+def add_channel(request, sport_id):
+  form = ChannelForm(request.POST)
+  if form.is_valid():
+    new_channel = form.save(commit=False)
+    new_channel.sport_id = sport_id 
+    new_channel.save()
+  
+  return redirect('detail', sport_id = sport_id)
+
+
+# DELETE CHANNEL
+# def delete_channel(request, sport_id, channel_id):
+#   sport=Sport.objects.get(id=sport_id)
+#   found_channel = Channel.objects.get(id=channel_id)
+#   sport.channel_set.remove(found_channel)
+#   return redirect('detail', sport_id = sport_id)  
+
+
+# UPDATE CHANNEL
+def update_channel(request, channel_id):
+  channel = Channel.objects.get(id=channel_id)
+
+  if request.method == 'GET':
+    form = ChannelForm(instance=channel)
+    context = {
+      'form': form
+    }
+
+    return render(request, 'sports/channel_edit.html', context)
+  else:
+    form = ChannelForm(request.POST, instance=channel)
+    if form.is_valid():
+      channel = form.save()
+      return redirect('detail', channel.id)  
 
 
 # DELETE ATHLETE

@@ -15,5 +15,6 @@ class AthleteForm(forms.ModelForm):
 class ChannelForm(forms.ModelForm):
   class Meta:
     model = Channel
-    fields = ('date', 'channel')    
-    
+    fields = ('date', 'name', 'time')    
+    labels = {'name': 'Channels'}
+    # self.fields['name'].label = 'channels'
