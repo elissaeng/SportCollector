@@ -39,6 +39,9 @@ def detail(request, sport_id):
 
 
 
+# CHANNEL TO WATCH SPORTS
+def channel_sport(request, sport_id):
+  form = ChannelForm(request.POST)
 
 
 # CREATE SPORTS
@@ -116,11 +119,11 @@ def add_channel(request, sport_id):
 
 
 # DELETE CHANNEL
-# def delete_channel(request, sport_id, channel_id):
-#   sport=Sport.objects.get(id=sport_id)
-#   found_channel = Channel.objects.get(id=channel_id)
-#   sport.channel_set.remove(found_channel)
-#   return redirect('detail', sport_id = sport_id)  
+def delete_channel(request, sport_id, channel_id):
+  sport=Sport.objects.get(id=sport_id)
+  found_channel = Channel.objects.get(id=channel_id)
+  sport.channel_set.remove(found_channel)
+  return redirect('detail', sport_id = sport_id)  
 
 
 # UPDATE CHANNEL
