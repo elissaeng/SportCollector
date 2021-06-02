@@ -55,7 +55,9 @@ def create_sport(request):
   else:
     form = SportForm(request.POST)
     if form.is_valid():
-      sport = form.save()
+      sport = form.save(commit=False)
+      sport.user = request.user
+      sport.save()
       return redirect('detail', sport.id)
 
 
@@ -124,6 +126,8 @@ def delete_channel(request, sport_id, channel_id):
   found_channel = Channel.objects.get(id=channel_id)
   sport.channel_set.remove(found_channel)
   return redirect('detail', sport_id = sport_id)  
+
+
 
 
 # UPDATE CHANNEL

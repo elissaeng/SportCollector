@@ -33,7 +33,7 @@
             <td>{{channel.name}}</td>
             <td>{{channel.date }}</td>
             <td>{{ channel.time }}</td>
-            {% comment %} <!-- <td><a href="{% url 'delete_channel' sport.id channel.id%}">Delete Channel</a></td> --> {% endcomment %}
+            <td><a href="{% url 'delete_channel' sport.id channel.id%}">Delete Channel</a></td> 
           </tr>
         {% endfor %}
       </tbody>

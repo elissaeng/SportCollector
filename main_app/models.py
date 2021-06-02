@@ -29,7 +29,7 @@ class Sport(models.Model):
 class Channel(models.Model):
   name = models.CharField(max_length=100)
   date = models.TextField(max_length=100)
-  time = models.IntegerField()
+  time = models.TextField(max_length=15)
 
   sport = models.ForeignKey(Sport, on_delete=models.CASCADE, null=True)
 
