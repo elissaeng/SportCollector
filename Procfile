@@ -1,1 +1,1 @@
-web: gunicorn SportCollector.wsgi
+web: gunicorn finchcollector_project.wsgi
